@@ -12,18 +12,6 @@
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
 
-{-# OPTIONS_GHC -fno-warn-orphans #-}
-
 module Crypto.JOSE.Types.Orphans where
 
-import Data.Aeson
-import qualified Data.Text as T
-import Network.URI (URI, parseURI)
-
-
-instance FromJSON URI where
-  parseJSON = withText "URI" $
-    maybe (fail "not a URI") return . parseURI . T.unpack
-
-instance ToJSON URI where
-  toJSON = String . T.pack . show
+import Network.URI.JSON ()
